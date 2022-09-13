@@ -22,6 +22,10 @@ class Chronometer {
     return Math.floor(this.currentTime % 60);
   }
 
+  getCentiseconds() {
+    // ... your code goes here
+  }
+
   computeTwoDigitNumber(value) {
     if (value < 10) return `0${value}`;
     return `${value}`;
@@ -43,10 +47,4 @@ class Chronometer {
 
     return `${minutes}:${seconds}`
   }
-}
-
-// The following is required to make unit tests work.
-/* Environment setup. Do not modify the below code. */
-if (typeof module !== 'undefined') {
-  module.exports = Chronometer;
 }
