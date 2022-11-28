@@ -38,7 +38,8 @@ describe('Chronometer class', () => {
     });    
 
     it('should increment by 1 the currentTime property on every 1 second interval', () => {
-      chronometer.start();
+      const printTimeCallback = jasmine.createSpy('printTimeCallback');
+      chronometer.start(printTimeCallback);
       jasmine.clock().tick(1000);
       expect(chronometer.currentTime).toEqual(1);
     });
@@ -51,7 +52,8 @@ describe('Chronometer class', () => {
     });
 
     it('should increment the currentTime property to 3 after 3 seconds', () => {
-      chronometer.start();      
+      const printTimeCallback = jasmine.createSpy('printTimeCallback');
+      chronometer.start(printTimeCallback);      
       jasmine.clock().tick(3000);
       expect(chronometer.currentTime).toEqual(3);
     });

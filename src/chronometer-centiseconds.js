@@ -1,50 +1,50 @@
 class Chronometer {
   constructor() {
-    this.currentTime = 0;
-    this.intervalId = null;
+    this.currentTime = 0
+    this.intervalId = null
   }
 
   start(printTimeCallback) {
     const intervalId = setInterval(() => {
-      this.currentTime += 1;
-      if (typeof printTimeCallback === "function"){
-        printTimeCallback();
+      this.currentTime += 1
+      if(typeof printTimeCallback === 'function'){
+        printTimeCallback()
       }
-    }, 1000);
-    this.intervalId = intervalId;
+    }, 10)
+    this.intervalId = intervalId
   }
 
   getMinutes() {
-    return Math.floor(this.currentTime / 60);
+    return  Math.floor( this.currentTime / 6000)
   }
 
   getSeconds() {
-    return Math.floor(this.currentTime % 60);
+    return Math.floor(((this.currentTime - this.getMinutes() * 6000) / 100))
   }
 
   getCentiseconds() {
-    // ... your code goes here
+    return Math.floor (this.currentTime - (this.getMinutes() * 6000) - (this.getSeconds() * 100))   
   }
 
   computeTwoDigitNumber(value) {
-    if (value < 10) return `0${value}`;
-    return `${value}`;
+    if (value < 10) return `0${value}`
+    return String(value)
   }
 
   stop() {
-    clearInterval(this.intervalId);
+    clearInterval(this.intervalId)
   }
 
   reset() {
-    this.currentTime = 0;
+    this.currentTime = 0
   }
 
   split() {
-    // return `${this.computeTwoDigitNumber(this.getMinutes())}:${this.computeTwoDigitNumber(this.getSeconds())}`;
-
     let minutes = this.computeTwoDigitNumber(this.getMinutes())
     let seconds = this.computeTwoDigitNumber(this.getSeconds())
+    let centiseconds = this.computeTwoDigitNumber(this.getCentiseconds())
 
-    return `${minutes}:${seconds}`
+    return `${minutes}:${seconds}.${centiseconds}`
   }
 }
+
